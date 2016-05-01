@@ -52,7 +52,9 @@
                 $this.addClass(base.options.submitFormClass);
                 $submitElement.addClass(base.options.submitElementClass);
                 $submitElement.text(base.options.submitElementText);
-                data.push({name: 'page', value: base.page});
+                if (base.page) {
+                    data.push({name: 'page', value: base.page});
+                }
 
                 $.ajax({
                     type: base.options.method,
@@ -77,6 +79,7 @@
         base.paginate = function (page) {
             base.page = page;
             base.$el.submit();
+            base.page = null;
         };
 
         base.init();
